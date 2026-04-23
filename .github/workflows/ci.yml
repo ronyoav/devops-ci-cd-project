@@ -37,3 +37,9 @@ jobs:
         with:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/devops-app:latest
+
+      - name: Run app
+        run: python app.py & sleep 5
+
+      - name: Health check
+        run: python check_app.py
