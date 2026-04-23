@@ -39,7 +39,10 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/devops-app:latest
 
       - name: Run app
-        run: python app.py & sleep 5
+        run: |
+          python app.py &
+          sleep 10
+          curl --fail http://127.0.0.1:5000/health
 
       - name: Health check
         run: python check_app.py
